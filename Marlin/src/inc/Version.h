@@ -1,4 +1,6 @@
 /**
+ *  * this is the version.h that is good
+ * * Marlin\src\inc
  * Marlin 3D Printer Firmware
  * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
@@ -25,7 +27,7 @@
  * Release version. Leave the Marlin version or apply a custom scheme.
  */
 #ifndef SHORT_BUILD_VERSION
-  #define SHORT_BUILD_VERSION "2.0.9.3"
+  #define SHORT_BUILD_VERSION "2.0.9.3-AJS3"
 #endif
 
 /**
@@ -73,7 +75,7 @@
  * Define a generic printer name to be output to the LCD after booting Marlin.
  */
 #ifndef MACHINE_NAME
-  #define MACHINE_NAME "3D Printer"
+  #define MACHINE_NAME "Alan's Ender 3 Pro 4.2.2"
 #endif
 
 /**
