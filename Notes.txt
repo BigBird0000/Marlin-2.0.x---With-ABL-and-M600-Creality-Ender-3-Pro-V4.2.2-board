@@ -1,0 +1,42 @@
+For those who do not like the time elapsed showing as
+mm'ss, this is in duration_t.h, line 166
+
+
+ 
+144  /**
+145   * @brief Formats the duration as a string
+146   * @details String will be formatted using a "digital" representation of duration
+147   *
+148   * @param buffer The array pointed to must be able to accommodate 10 bytes
+149   *
+150   * Output examples:
+151   *  123456789 (strlen)
+152   *  12'34
+153   *  99:59
+154   *  11d 12:33
+155   */
+156  uint8_t toDigital(char *buffer, bool with_days=false) const {
+157	const uint16_t h = uint16_t(this->hour()),
+158           m = uint16_t(this->minute() % 60UL);
+159    if (with_days) {
+160		const uint16_t d = this->day();
+161      sprintf_P(buffer, PSTR("%hud %02hu:%02hu"), d, h % 24, m);  // 1d 23:45
+162      return d >= 10 ? 9 : 8;
+163    }
+164    else if (!h) {
+165      const uint16_t s = uint16_t(this->second() % 60UL);
+166*** sprintf_P(buffer, PSTR("%02hu'%02hu"), m, s);     // 12'34
+167      return 5;
+168    }
+169   else if (h < 100) {
+170      sprintf_P(buffer, PSTR("%02hu:%02hu"), h, m);     // 12:34
+171      return 5;
+172   }
+173    else {
+174      sprintf_P(buffer, PSTR("%hu:%02hu"), h, m);       // 123:45
+175      return 6;
+176    }
+177  }
+178
+179  #pragma GCC diagnostic pop
+180};
